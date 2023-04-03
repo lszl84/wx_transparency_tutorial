@@ -43,4 +43,20 @@ MyFrame::MyFrame(const wxString &title, const wxPoint &pos, const wxSize &size)
     sizer->Add(panel, 1, wxEXPAND);
 
     SetSizerAndFit(sizer);
+
+    // add context menu to the button
+    custom->Bind(wxEVT_CONTEXT_MENU, [custom](wxContextMenuEvent &event)
+                 {
+                     wxMenu menu;
+                     menu.Append(wxID_ANY, "Save");
+                     menu.Bind(wxEVT_MENU, [custom](wxCommandEvent &event)
+                               {
+                                   wxFileDialog dialog(custom, "Save", "", "", "PNG (*.png)|*.png", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+                                   if (dialog.ShowModal() == wxID_OK)
+                                   {
+                                       custom->Save(dialog.GetPath().ToStdString());
+                                   }
+                               });
+                     custom->PopupMenu(&menu);
+                 });
 }

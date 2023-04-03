@@ -57,5 +57,25 @@ public:
                     (buttonRect.GetHeight() - textHeight) / 2.0);
     }
 
+    void Save(std::string filePath)
+    {
+        double scale = GetDPIScaleFactor(); // matching the screen DPI
+
+        wxBitmap bitmap;
+        bitmap.CreateWithDIPSize(GetClientRect().GetSize() * GetContentScaleFactor(), scale);
+
+        wxMemoryDC dc(bitmap);
+        dc.SetUserScale(scale, scale);
+
+        std::unique_ptr<wxGraphicsContext> gc{wxGraphicsContext::Create(dc)};
+
+        if (gc)
+        {
+            DrawOnContext(*gc);
+        }
+
+        bitmap.SaveFile(filePath, wxBITMAP_TYPE_PNG);
+    }
+
     std::string text;
 };
