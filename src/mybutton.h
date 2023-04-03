@@ -70,7 +70,8 @@ public:
         double scale = GetDPIScaleFactor(); // matching the screen DPI
 
         wxBitmap bitmap;
-        bitmap.CreateWithDIPSize(GetClientRect().GetSize() * GetContentScaleFactor(), scale);
+        bitmap.CreateWithDIPSize(GetClientRect().GetSize() * GetContentScaleFactor(), scale, 32);
+        bitmap.UseAlpha();
 
         wxMemoryDC dc(bitmap);
         dc.SetUserScale(scale, scale);
