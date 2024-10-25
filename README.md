@@ -2,8 +2,8 @@
 
 Handling transparency in wxWidgets.
 
-See: https://www.youtube.com/channel/UC4Q-KGKCeFbBpaAqwllCDqQ
+Full tutorial: https://www.youtube.com/watch?v=CeHM_UD_BkE
 
 ---
-Check out the blog for more! [www.justdevtutorials.com](https://www.justdevtutorials.com)
+Check out the blog for more! [www.lukesdevtutorials.com](https://www.lukesdevtutorials.com)
 ---
